@@ -30,10 +30,9 @@ const QuizS= new mongoose.Schema(
         question:{type:String},
         answer:{type:[
             {
-            AnsText:String,
+            anstext:String,
             up:Number,
-            down:Number,
-            id:String
+            userid:String
         }]
         }
     

@@ -35,23 +35,55 @@ app.get('/',(req,res)=>{
 }
 );
 
+/*
+data={
+  name:string
+  rollno:string
+  points:int
 
+}*/
 app.post('/api/adduser',DataFunctions.AddUser);
 
-app.get('/api/:name',DataFunctions.FindUser);
 
 
 
-app.post('/app/addquiz',DataFunctions.AddQuiz);
+app.get('/api/:rollno',DataFunctions.FindUser);//
+
+
+
+/*
+data={
+  userid:_id
+  question:string
+}*/
+app.post('/api/addquiz',DataFunctions.AddQuiz);
+
+
+/*
+data={
+  questionid:_id(queston id)
+  anstext:string
+  userid:_id(this is userid who give the ans)
+}*/
 
 app.post('/api/addans',DataFunctions.AddAns);
 
-app.put('/api/:userid/updatequestion',DataFunctions.UpdateQuestion);
 
-app.delete('/api/:userid/deletQuestion',DataFunctions.DeleteQuiz);
 
-app.put('/api/:userid/upvote',DataFunctions.UpVoteQuestion);
+app.get('/api/user/:userid',DataFunctions.FindAllUserInfo);
 
+// app.put('/api/:userid/updatequestion',DataFunctions.UpdateQuestion);
+
+// app.delete('/api/:userid/deletQuestion',DataFunctions.DeleteQuiz);
+
+
+/*
+data={
+  questionid:_id
+  ansid:_id(ans id in ans arr)
+}*/
+
+app.post('/api/upvote',DataFunctions.UpVoteQuestion);
 
 // app.post('/api/AddUser',DataFunction.AddUser);
 
@@ -74,4 +106,5 @@ app.get('*', (req, res) => {
 
 app.listen(port,()=>{
   console.log('app runing on Prot:',port)
-})
+}
+)
