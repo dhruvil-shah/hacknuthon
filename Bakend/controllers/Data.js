@@ -26,6 +26,17 @@ const AddUser=async (req,res)=>{
 }
 
 
+const FindQuiz=async (req,res)=>{
+   
+    // const {name,rollno,points}=req.body;
+    // console.log(name,rollno,points);
+    const data=await Quiz.find({});
+
+    res.json(data);
+
+}
+
+
 //For finding the data of user in data base
 
 const FindUser=async (req,res)=>{
@@ -156,7 +167,7 @@ const FindAllUserInfo=async (req,res)=>{
 
 
 exports.saydemo=function(req,res){
-    res.render(res.path);
+    res.render('zd');
 }
 
 exports.AddUser=AddUser;
@@ -166,5 +177,6 @@ exports.AddAns=AddAns;
 exports.UpVoteQuestion=UpVote;
 // exports.UpdatePoint=UpdatePoint;
 exports.FindAllUserInfo=FindAllUserInfo;
+exports.FindQuiz=FindQuiz;
 // exports.DeleteQuiz=DeleteQuiz;s
 // exports.UpdateQuestion=UpdateQuestion;

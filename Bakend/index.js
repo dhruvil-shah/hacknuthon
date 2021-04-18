@@ -9,14 +9,14 @@ const DataFunctions =require('./controllers/Data.js')
 // Create a new express application called 'app'
 const app = express();
 
-app.set('view engine','hbs');
+// app.set('view engine','hbs');
 // Set up the CORs middleware
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-// app.use(express.static(__dirname+'/views'))
+app.use(express.static('public'))
 
 // Set our backend port to be either an environment variable or port 5000
 const port = process.env.PORT || 5000;
@@ -27,11 +27,13 @@ const port = process.env.PORT || 5000;
 //     next();
 // });
 
+// http://localhost:5000/api/adduser
 
 app.get('/',(req,res)=>{
   // DataFunctions.AddUser(/);
-  res.path=path.join(__dirname + '/views/index.hbs');
-  DataFunctions.saydemo(req,res)
+  // res.path=path.join(__dirname + '/views/.html');
+  // DataFunctions.saydemo('hqoq')
+  res.send("start");
 }
 );
 
@@ -40,8 +42,10 @@ data={
   name:string
   rollno:string
   points:int
-
+  
 }*/
+app.get('/api/Quiz',DataFunctions.FindQuiz);
+
 app.post('/api/adduser',DataFunctions.AddUser);
 
 
@@ -57,6 +61,8 @@ data={
   question:string
 }*/
 app.post('/api/addquiz',DataFunctions.AddQuiz);
+
+
 
 
 /*
