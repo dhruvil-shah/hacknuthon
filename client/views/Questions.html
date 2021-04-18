@@ -1,80 +1,280 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title></title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<!-- <link rel="stylesheet" href="css/style-home.css"> -->
-	<link href="../static/style-home.css" rel="stylesheet" type="text/css">
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="css/style-home.css"> -->
+    <link href="../static/style-home.css" rel="stylesheet" type="text/css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
 </head>
 
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	  <div class="container-fluid">
-	    <a class="navbar-brand" href="/">Nirma University</a>
-	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-	      <span class="navbar-toggler-icon"></span>
-	    </button>
-	    <div class="collapse navbar-collapse" id="navbarNav">
-	      <ul class="navbar-nav">
-	        <li class="nav-item">
-	          <a class="nav-link active" aria-current="page" href="Quiz.html">Query</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" href="#">Job</a>
-	        </li>
-			<li style="margin-left: 1287px;" id="user">
-			</li>
-	      </ul>
-	    </div>
-	  </div>
-	</nav>
-	
-	
-		 <div id="demo">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="home.html">Nirma University</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="Quiz.html">Query</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Job</a>
+                    </li>
+                    <li style="margin-left: 1287px;" id="user">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div style="width: 80%; margin: 0 auto;">
+        <br>
+        <h1>Question</h1>
+        <!-- <hr> -->
+        <br>
+
+
+        <ul class="list-group" id="Quizs" style="cursor: pointer;">
+        </ul>
+        <br>
+        <h1>Ans</h1>
+        <br>
+        <ul class="list-group" id="Ans" style="cursor: pointer;">
+        </ul>
     </div>
+    <br>
+    <form action="/" method="post">
+        <!-- <div class="md-form mb-4 pink-textarea active-pink-textarea-2"> -->
+        <div class="input-group mb-3" style="width: 80%; margin: 0 auto">
+            <input type="text" class="form-control" id="AnsText" placeholder="Enter Ans"
+                aria-label="Recipient's username" aria-describedby="basic-addon2" required>
+            <span class="input-group-text" id="basic-addon2">
+                <button type="submit" class="btn btn-default" onclick="AddAns(event)">Add</button>
+            </span>
+        </div>
+
+        <!-- </div> -->
+
+    </form>
 
 
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 
 
 <script>
 
-	let userdata=localStorage.getItem('UserInfo');
-    const user=document.querySelector("#user");
-    const demo=document.querySelector("#demo");
+    let userdata = localStorage.getItem('UserInfo');
+    const user = document.querySelector("#user");
+    const Question = document.querySelector("#Quizs");
+    const ans = document.querySelector("#Ans");
+    const AnsText = document.querySelector("#AnsText");
 
-    demo.innerHTML=localStorage.getItem('QuestionId');
-    localStorage.removeItem('QuestionId');
+    let data = null;
+    let questiondata = null;
 
-	if(userdata){
+    const id = localStorage.getItem('Question');
 
-		userdata=JSON.parse(userdata);
+    if (userdata) {
 
-		user.innerHTML=`
+        userdata = JSON.parse(userdata);
+
+        user.innerHTML = `
 		<button type="button" class="btn btn-primary"><a style="color: white;" href="login.html">${userdata['name']}</a></button>
 		<button type="button" class="btn btn-primary"><a style="color: white;" href="home.html" onclick="LogOut()">Log Out</a></button>
 		`
 
-	}else{
+    } else {
 
-		user.innerHTML=`
+        user.innerHTML = `
 				<button type="button" class="btn btn-primary"><a style="color: white;" href="login.html">Log In</a></button>
 				<button type="button" class="btn btn-secondary"><a  style="color: white;"  href="signin.html">Sign In</a></button>
 				`
-	}
+    }
 
 
 
-	function LogOut(){
-		localStorage.clear();
-	}
+    function LogOut() {
+        localStorage.clear();
+    }
+
+
+    const FetchData = async () => {
+
+        try {
+            const response = await axios.get(`http://localhost:5000/api/Quiz/${id}`
+            );
+            const data = response.data;
+            console.log(data);
+            questiondata = data;
+            const IamIn = data['userid'] === userdata['_id'];
+            if (IamIn) {
+                // console.log(data[`question`]);
+
+                Question.innerHTML = `<li 
+						class="list-group-item active" 
+						 aria-current="true"
+						onclick=\"GotoQuestion(\'${data['_id']}\')\"
+						>
+
+							${data['question']}
+						
+							<span style="float: right;">
+
+								👉 Asked By You
+							
+							</span>
+
+							</li>
+							`
+            } else {
+
+                Question.innerHTML = `<li class="list-group-item active" aria-current="true"
+						
+						onclick="GotoQuestion(\'${data['_id']}\')"
+						>
+							
+							${data['question']}
+						
+							</li>`
+            }
+
+
+            const ans_arr = data['answer'];
+            const html = ans_arr.map((data1) => {
+                // console.log(data[`question`]);
+                const ans = data1['anstext'];
+
+                console.log(data1);
+
+                return data1['up']===0
+                        ?`<li class="list-group-item active " aria-current="true"
+                        >
+                        ${IamIn ? `<input width=30 type="checkbox" class="AnsI" title="marked" onclick="UpVote(this)">` :""}
+        
+                         ${ans}
+    
+                       </li>`
+                       :
+                       `<li class="list-group-item active " aria-current="true"
+                        >
+                        ${IamIn ? `<input width=30 type="checkbox" class="AnsI" title="marked" onclick="UpVote(this)" checked>` :""}
+        
+                         ${ans}
+
+                         <span style="float: right;" title="correct ans">
+                            ✔️
+                        </span>
+    
+                       </li>`
+
+
+            }
+            )
+
+            ans.innerHTML = html
+
+
+
+            // console.log(response);
+            // return todoItems;
+        } catch (errors) {
+            console.error(errors);
+        }
+
+    }
+
+
+    const AddAns=async(e)=>{
+        // console.log(questiondata);
+        e.preventDefault();
+        if (questiondata['userid'] === userdata['_id']) {
+            alert("You can not add ans");
+        } else {
+
+            try {
+                const response = await axios.post(`http://localhost:5000/api/addans`,
+
+                {
+                    questionid:questiondata['_id'],
+                    anstext:AnsText.value,
+                    userid:userdata['_id']
+                }
+                
+                );
+                const data=response.data;
+
+
+                console.log(data);
+
+                location.replace("http://127.0.0.1:5500/client/views/Questions.html");
+
+
+                // console.log(response);
+                // return todoItems;
+            } catch (errors) {
+                console.error(errors);
+            }
+
+        }
+    }
+
+
+
+    const UpVote=async(data1)=>{
+
+        let number=10;
+
+        if(!data1.checked){
+            number=-10;
+        }
+        const ans_arr=Array.from(document.querySelectorAll('.AnsI'))
+        console.log(ans_arr);
+        const index=ans_arr.indexOf(data1);
+        console.log(number);
+        try {
+                const response = await axios.post(`http://localhost:5000/api/upvote`,
+
+                {
+                    questionid:questiondata['_id'],
+                    index:index,
+                    number:number
+                }
+                
+                );
+                const data=response.data;
+
+
+                console.log(data);
+
+                // location.replace("http://127.0.0.1:5500/client/views/Questions.html");
+// 
+
+                // console.log(response);
+                // return todoItems;
+            } catch (errors) {
+                console.error(errors);
+            }
+    }
+    FetchData();
 </script>
+
 </html>

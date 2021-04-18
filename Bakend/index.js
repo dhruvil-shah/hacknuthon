@@ -46,6 +46,9 @@ data={
 }*/
 app.get('/api/Quiz',DataFunctions.FindQuiz);
 
+
+app.get('/api/Quiz/:id',DataFunctions.FindQuizById);
+
 app.post('/api/adduser',DataFunctions.AddUser);
 
 
@@ -85,8 +88,9 @@ app.get('/api/user/:userid',DataFunctions.FindAllUserInfo);
 
 /*
 data={
-  questionid:_id
-  ansid:_id(ans id in ans arr)
+   questionid:questiondata['_id'],
+                    index:index,
+                    number:number
 }*/
 
 app.post('/api/upvote',DataFunctions.UpVoteQuestion);

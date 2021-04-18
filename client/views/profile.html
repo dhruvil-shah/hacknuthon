@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <title>home page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+  .image
+  {
+  
+  width: 160px;
+  height: 160px;
+  display: block;
+  margin: 13px auto;
+}
+input{
+  width: 250px;
+  height: 30px;
+  border-radius: 13px ;
+  display: block;
+  margin: 15px auto;
+  color: black;
+  font-size: 22px;
+  padding: 23px;
+  text-align: center;
+}
+#solved{
+  height: 75px; 
+  width:150px;
+  text-align: center;
+  display: block;
+  margin: 15px auto;
+  font-size: 30px;
+}
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="home.html">Nirma University</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="Quiz.html">Query</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Job</a>
+					</li>
+					<li style="margin-left: 1287px;" id="user">
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+<img src="../static/person.png" class="image" alt="Profile Picture">
+<input type="text"  name="" id="name">
+<input type="text"  name="" id="rollno">
+
+<input type="text"  id="points" >
+</body>
+
+<script>
+     
+     // const username = document.querySelector('#username');
+    //  const rollno = document.querySelector('#rollno');
+     const name1=document.querySelector("#name");
+     const rollno1=document.querySelector("#rollno");
+     const points=document.querySelector("#points");
+     const userdata=JSON.parse(localStorage.getItem('UserInfo'))
+  
+  const ApiAddUser=async (name, rollno)=>{
+      try {
+          const response = await axios.get(`http://localhost:5000/api/${rollno}`);
+
+          const data=response.data;
+          console.log(data);
+
+          name1.value=data['name']
+          rollno1.value=data['rollno']
+          points.value=data['points']
+          // console.log(data);
+
+          localStorage.setItem('UserInfo', JSON.stringify(data));
+          // console.log(response);
+          // return todoItems;
+      } catch (errors) {
+          console.error(errors);
+      }
+  }
+
+  
+  
+  console.log(userdata)
+      // e.preventDefault();
+      ApiAddUser(null, userdata['rollno']);
+
+    // AddUser(null);
+</script>
+</html>

@@ -36,6 +36,16 @@ const FindQuiz=async (req,res)=>{
 
 }
 
+const FindQuizById=async (req,res)=>{
+   
+    const {id}=req.params;
+    // console.log(name,rollno,points);
+    const data=await Quiz.findOne({_id:id});
+
+    res.json(data);
+
+}
+
 
 //For finding the data of user in data base
 
@@ -101,23 +111,31 @@ const AddAns=async (req,res)=>{
 
 const UpVote=async (req,res)=>{
 
-    const {questionid,ansid}=req.body;
+    const {questionid,index,number}=req.body;
+    console.log(req.body);
 
     let quiz=await Quiz.findOne({_id:questionid});
 
     let new_quiz=[...quiz["answer"]];
 
-    let ans_arr=new_quiz.find((data)=>data['_id']==ansid);
+    // let ans_arr=new_quiz.find((data)=>data['_id']==ansid);
 
     // console.log(typeof(new_quiz[0]['_id']));
 
-    let userid=ans_arr['userid'];
-
-    await Quiz.updateOne(quiz, {up:1});
+    let userid=new_quiz[index]['userid'];
+    
+    if(number>0){
+        await Quiz.updateOne(quiz, {up:1});
+        
+    }else{
+        
+        await Quiz.updateOne(quiz, {up:0});
+    }
 
     // conat an
     let ans=await User.findOne({_id:userid});
-    const new_p=ans['points']+10;
+
+    const new_p=ans['points']+number;
 
     await User.updateOne({_id:userid},{points:new_p});
   
@@ -178,5 +196,7 @@ exports.UpVoteQuestion=UpVote;
 // exports.UpdatePoint=UpdatePoint;
 exports.FindAllUserInfo=FindAllUserInfo;
 exports.FindQuiz=FindQuiz;
+exports.FindQuizById=FindQuizById;
+// ex
 // exports.DeleteQuiz=DeleteQuiz;s
 // exports.UpdateQuestion=UpdateQuestion;
